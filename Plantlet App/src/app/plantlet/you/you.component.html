@@ -1,0 +1,106 @@
+<ns-action-bar [showBackButton]="false" title="You"></ns-action-bar>
+
+
+<GridLayout class="overall" rows="*, *,*" columns="*,*,*" >
+    <StackLayout row="0" col="0" colSpan="3" class="background view">
+        <GridLayout rows="*,*,*">
+<!--            <Image row="0" rowSpan="2" col="1" class="circle" [src]="'http://10.0.2.2:5000/static/images/avatars/user_1.jpg'"></Image>-->
+            <label [text]="imageText" class="circle1" row="0" rowSpan="2" col="1"></label>
+            <FlexboxLayout flexDirection="column" justifyContent="center" alignItems="center" row="2" col="1">
+                <Label [text]="user" class="h2"></Label>
+            </FlexboxLayout>
+        </GridLayout>
+    </StackLayout>
+
+    <FlexboxLayout row="1" rowSpan="2" col="0" colSpan="3"  *ngIf="postDetail.length === 0" flexDirection="column" justifyContent="center" alignItems="center">
+        <Label class="h2" text="No Post Added Yet."></Label>
+        <Button text="Add Post" (tap)="onAddPost()" class="btn btn-primary btn-rounded-lg" fontSize="15"></Button>
+    </FlexboxLayout>
+
+    <ListView *ngIf="postDetail.length !== 0" row="1" rowSpan="2" col="0" colSpan="3" [items]="postDetail" class="list-group">
+        <ng-template let-post="item" let-i="index">
+            <StackLayout>
+                <GridLayout rows="auto, auto, auto, auto, auto" columns="64, *" class="post-content">
+                    <label
+                            row="0"
+                            col="0"
+                            rowSpan="2"
+                            class="postImageSmall"
+                            [text]="post.username[0]"
+                    ></label>
+
+                    <Label row="0" col="1" class="postAuthorName" [text]="post.username"></Label>
+
+                    <Label row="1" col="1" class="postDateSmall" [text]="post.post_date | date"></Label>
+
+                    <Label class="postTitle" row="2" col="0" colSpan="2" [text]="post.description"></Label>
+
+                    <Image row="3" col="0" colSpan="2" [src]="'https://fyp-backend-api.herokuapp.com' + post.post_image" stretch="aspectFill"></Image>
+
+                    <GridLayout row="4" col="0" colSpan="2" rows="*" columns="*, *, *">
+                        <button row="0" col="0" colSpan="3" [text]="iconDelete" class="icon-post1 fa" (tap)="onDelete(post.id)"></button>
+<!--                        <DropDown #dd-->
+<!--                                  row="0" col="2"-->
+<!--                                  class="icon-post fa dropdown"-->
+
+<!--                                  [items]="items"-->
+<!--                                  [(ngModel)]="selectedIndex"-->
+<!--                                  (selectedIndexChanged)="onchange($event)"-->
+<!--                                  (opened)="onopen()"-->
+<!--                                  (closed)="onclose()"-->
+<!--                                  row="0"-->
+<!--                                  colSpan="2"></DropDown>-->
+
+                    </GridLayout>
+
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>
+
+
+
+<!--<GridLayout>-->
+<!--        <GridLayout-->
+<!--                columns="*,*,*"-->
+<!--                rows="*,*,*,*,*,*"-->
+<!--        >-->
+<!--            <StackLayout colSpan="3" rowSpan="3" class="background animate-up"></StackLayout>-->
+<!--            <Label row="1" col="1" class="circle"></Label>-->
+
+<!--            <StackLayout row="3" rowSpan="1" colSpan="3" class="background"></StackLayout>-->
+<!--            <Label [color]="lblColor" row="3" col="0" text="Username:" class="lbl"></Label>-->
+
+<!--            <StackLayout row="3" col="1" colSpan="2" class="txt" *ngIf="isEditMode">-->
+<!--                <GridLayout>-->
+<!--                    <TextField  text="Usman Ali" ></TextField>-->
+<!--                </GridLayout>-->
+<!--            </StackLayout>-->
+<!--            <Label row="3" col="1" colSpan="2" text="Usman Ali" class="lbl" *ngIf="!isEditMode"></Label>-->
+
+<!--            <StackLayout row="4" rowSpan="1" colSpan="3" class="background"></StackLayout>-->
+
+<!--            <Label [color]="lblColor" row="4" col="0" text="E-Mail:" class="lbl"></Label>-->
+
+<!--            <StackLayout row="4" col="1" colSpan="2" class="txt" *ngIf="isEditMode">-->
+<!--                <GridLayout>-->
+<!--                    <TextField text="muausman111@gmail.com"></TextField>-->
+<!--                </GridLayout>-->
+<!--            </StackLayout>-->
+<!--            <Label row="4" col="1" colSpan="2" text="muausman111@gmail.com" class="lbl" *ngIf="!isEditMode"></Label>-->
+
+<!--            <Button class="btn btn-primary btn-rounded-lg" row="5" [colSpan]="colSpan" [text]="isEditMode ? 'Save' : 'Edit'" (tap)="onEdit()"></Button>-->
+<!--            <Button class="btn btn-flat" text="Cancel" row="5" col="2" (tap)="onCancel()" *ngIf="isEditMode"></Button>-->
+
+<!--        </GridLayout>-->
+<!--        <GridLayout rows="*,*" columns="*,*">-->
+<!--            <StackLayout class="curve1" row="0" rowSpan="2" col="0"></StackLayout>-->
+<!--            <StackLayout class="curve2" row="0" rowSpan="2" col="1"></StackLayout>-->
+<!--        </GridLayout>-->
+
+
+<!--</GridLayout>-->
+
+
+
